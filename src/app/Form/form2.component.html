@@ -1,0 +1,102 @@
+<div style="text-align:center">
+    <h2>Step 2</h2>
+    <h4>CustomerId:{{custID}}</h4>
+    <form>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="First Name" #Fname>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Middle Name" #Mname>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Last Name" #Lname>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="PAN card number" #PANCardNo>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Aadhar Number" #AadharNo>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Passport Number" #PassportNo>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Line Address 1" #LineAddress1>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Line Address 2" #LineAddress2>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Line Address 3" #LineAddress3>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Pin" #Pin>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="City" #City>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="State" #State>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Address Proof Document" #AddressProof>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Mobile Number" #MobileNo>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Landline number" #LandlineNo>
+            </mat-form-field>    
+        </p>
+        <p>
+            <span>Request OTP type:</span>
+            <mat-radio-group [(ngModel)]="OTPType" [ngModelOptions]="{standalone: true}">
+                <mat-radio-button *ngFor="let type of OTPRequestTypes" [value]="type">
+                    {{type}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </p>
+            <button mat-raised-button color="accent" type="button" (click)="VerifyDetails(Fname,Mname,Lname,PANCardNo,AadharNo,PassportNo,LineAddress1,LineAddress2,LineAddress3,Pin,City,State,AddressProof,MobileNo,LandlineNo,OTPType)">Verify</button>
+    </form>
+    <p *ngIf="PANDetailsVerificationText">
+        Verifying PAN Card Details...
+        <span *ngIf="PANDetailsVerificationTextVerified">
+            &#x2714;
+        </span>
+    </p>
+    <p *ngIf="AadhaarDetailsVerificationText">
+        Verifying Aadhaar Details...
+        <span *ngIf="AadhaarDetailsVerificationTextVerified">
+            &#x2714;
+        </span>
+    </p>
+</div>

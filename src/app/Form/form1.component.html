@@ -1,0 +1,31 @@
+ <div style="text-align: center">
+     <h2>Step 1: Verify Customer</h2>
+    <form [formGroup]="customerIDFormControl">
+        <p>
+            <mat-form-field>
+                    <input matInput placeholder="customerId" #custID [formControl]="username"> 
+                    <mat-error *ngIf="username?.errors && username?.touched">
+                        Customer ID must be 9 digits
+                    </mat-error>  
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                    <input matInput placeholder="password" type="password" #pwd [formControl]="password">
+                    <mat-error *ngIf="password?.required && password?.touched">
+                        Customer ID must be 9 digits
+                    </mat-error>
+            </mat-form-field>
+        </p>
+        <div>
+            <button mat-raised-button color="primary" (click)="VerifyCust(custID,pwd,$event)">Verify</button>
+            <div *ngIf="progressSpinner" style="text-align:center">
+            <span style="text-align:center">
+                <p>Verifying...</p>
+                     <!--<mat-progress-spinner mode="indeterminate" style="position: center"></mat-progress-spinner>-->
+            </span>
+        </div>
+        </div>
+        
+    </form>
+ </div>    
