@@ -52,7 +52,7 @@ export class FormService
         let headers=new Headers();
         headers.set('Content-Type','application/json');
         headers.set('Access-Control-Allow-Origin', '*');
-        headers.set('apikey', '275Z1688K87589ZW');
+        //headers.set('apikey', '275Z1688K87589ZW');
         let options=new RequestOptions({headers:headers,method:"POST"});
         return this.http.post(this.UrlStep3,this.dataStore,options)
         //we call the .json method on the response because the actual response is not a collection of data but a JSON string

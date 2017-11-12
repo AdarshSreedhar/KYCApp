@@ -1,24 +1,27 @@
- <div style="text-align: center">
+<div style="text-align: center">
      <h2>Step 1: Verify Customer</h2>
-    <form [formGroup]="customerIDFormControl">
+    <form #formCtrl="ngForm">
         <p>
             <mat-form-field>
-                    <input matInput placeholder="customerId" #custID [formControl]="username"> 
-                    <mat-error *ngIf="username?.errors && username?.touched">
-                        Customer ID must be 9 digits
+                    <input matInput placeholder="customerId" #custID [formControl]="custIDFormControl"> 
+                    <mat-error *ngIf="custIDFormControl.hasError('pattern')">
+                       Customer ID must be 9 digits
+                    </mat-error>
+                    <mat-error *ngIf="custIDFormControl.hasError('required')">
+                       Customer ID is <strong>required</strong>
                     </mat-error>  
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                    <input matInput placeholder="password" type="password" #pwd [formControl]="password">
-                    <mat-error *ngIf="password?.required && password?.touched">
-                        Customer ID must be 9 digits
+                    <input matInput placeholder="password" type="password" #pwd [formControl]="passwordFormControl">
+                    <mat-error *ngIf="passwordFormControl.hasError('required')">
+                        Password is <strong>required</strong>
                     </mat-error>
             </mat-form-field>
         </p>
         <div>
-            <button mat-raised-button color="primary" (click)="VerifyCust(custID,pwd,$event)">Verify</button>
+            <button mat-raised-button color="primary" (click)="VerifyCust(custID,pwd,$event)" [disabled]="!(custIDFormControl.valid&&passwordFormControl.valid)">Verify</button>
             <div *ngIf="progressSpinner" style="text-align:center">
             <span style="text-align:center">
                 <p>Verifying...</p>
@@ -28,4 +31,4 @@
         </div>
         
     </form>
- </div>    
+ </div>

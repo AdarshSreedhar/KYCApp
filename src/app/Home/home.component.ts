@@ -15,4 +15,8 @@ export class HomeComponent{
     {
         this.router.navigate(['/getcustdetails']);
     }
+    FetchTxnDetails()
+    {
+        this.router.navigate(['/getTxndetails']);
+    }
 }

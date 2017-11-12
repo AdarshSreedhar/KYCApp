@@ -1,8 +1,12 @@
 import {Component,Inject} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormService } from "./form.service";
+import {FormBuilder,FormGroup,FormArray,Validators,FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
-
+const PANCARD_REGEX="[A-Za-z]{5}\d{4}[A-Za-z]{1}";
+const AADHAAR_REGEX="[0-9]{16}";
+const PIN_REGEX="[0-9]{6}";
+const PHONE_REGEX="[1-9][0-9]{9}";
 @Component({
     selector:'forms',
     templateUrl:'form2.component.html',
@@ -16,13 +20,21 @@ export class FormComponent2
   PANDetailsVerificationTextVerified:boolean=false;
   AadhaarDetailsVerificationText:boolean=false;
   AadhaarDetailsVerificationTextVerfied:boolean=false;
+  OTPType:string;
+  PANCardFormControl=new FormControl('',[Validators.required,Validators.pattern(PANCARD_REGEX)]);
+  AadhaarFormControl=new FormControl('',[Validators.required,Validators.pattern(AADHAAR_REGEX)]);
+  PINFormControl=new FormControl('',[Validators.required,Validators.pattern(PIN_REGEX)]);
+  AddrFControl=new FormControl('',[Validators.required]);
+  FnameFControl=new FormControl('',[Validators.required]);
+  LNameFControl=new FormControl('',[Validators.required]);
+  MobileFormControl=new FormControl('',[Validators.required,Validators.pattern(PHONE_REGEX)]);
 ngOnInit()
 {
-    /*if(this.formService.IsObjectEmpty())
+    if(this.formService.IsObjectEmpty())
     {
         alert("Complete Step 1 Properly");
         this.router.navigate(['/step1']);
-    }*/
+    }
 }
 OTPRequestTypes = [
     'Message',

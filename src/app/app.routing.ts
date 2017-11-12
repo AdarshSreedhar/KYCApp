@@ -3,6 +3,7 @@ import {HomeComponent} from "./Home/home.component"
 import { FormComponent1 } from "./Form/form1.component";
 import { FormComponent2 } from "./Form/form2.component";
 import { FormComponent3 } from "./Form/form3.component";
+import { TxnDetailsComponent } from "./TxnDetails/txndetails.component";
 import { CustDetailsComponent } from "./CustDetails/custdetails.component";
 const appRoutes:Routes=
 [
@@ -11,6 +12,7 @@ const appRoutes:Routes=
         {path:'step2',component:FormComponent2},
         {path:'step3',component:FormComponent3},
         {path:'getcustdetails',component:CustDetailsComponent},
+        {path:'getTxndetails',component:TxnDetailsComponent},
         {path:'**',redirectTo:''}
 ];
 export const routing=RouterModule.forRoot(appRoutes);

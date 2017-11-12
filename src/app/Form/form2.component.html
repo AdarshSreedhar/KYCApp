@@ -1,75 +1,102 @@
 <div style="text-align:center">
-    <h2>Step 2</h2>
+    <h2>Step 2: Enter Particulars</h2>
     <h4>CustomerId:{{custID}}</h4>
     <form>
         <p>
             <mat-form-field>
-                <input matInput placeholder="First Name" #Fname>
+                <input matInput placeholder="First Name" #Fname [formControl]="FnameFControl">
+                <mat-error *ngIf="FnameFControl.hasError('required')">
+                       First Name is <strong>required</strong>
+                 </mat-error>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="Middle Name" #Mname>
+                <input matInput placeholder="Middle Name" #Mname value="">
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="Last Name" #Lname>
+                <input matInput placeholder="Last Name" #Lname [formControl]="LNameFControl">
+                <mat-error *ngIf="LNameFControl.hasError('required')">
+                       Last Name is <strong>required</strong>
+                 </mat-error>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="PAN card number" #PANCardNo>
+                <input matInput placeholder="PAN card number" #PANCardNo [formControl]="PANCardFormControl">
+                    <mat-error *ngIf="PANCardFormControl.hasError('required')">
+                       PAN Card is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="PANCardFormControl.hasError('pattern')">
+                       PAN card must be of the format <strong>XXXXX9999X</strong>
+                    </mat-error>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="Aadhar Number" #AadharNo>
+                <input matInput placeholder="Aadhar Number" #AadharNo [formControl]="AadhaarFormControl">
+                <mat-error *ngIf="AadhaarFormControl.hasError('required')">
+                       Aadhaar Number is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="AadhaarFormControl.hasError('required')">
+                       Aadhaar Number must be <strong>16 digits only</strong>
+                    </mat-error>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="Passport Number" #PassportNo>
+                <input matInput placeholder="Passport Number" #PassportNo value="">
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="Line Address 1" #LineAddress1>
+                <input matInput placeholder="Line Address 1" #LineAddress1 maxlength="25" [formControl]="AddrFControl">
+                <mat-error *ngIf="AddrFControl.hasError('required')">
+                       Address is<strong>required</strong>
+                </mat-error>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="Line Address 2" #LineAddress2>
+                <input matInput placeholder="Line Address 2" #LineAddress2 maxlength="25" value="">
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="Line Address 3" #LineAddress3>
+                <input matInput placeholder="Line Address 3" #LineAddress3 maxlength="25" value="">
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="Pin" #Pin>
+                <input matInput placeholder="Pin" #Pin [formControl]="PINFormControl">
+                <mat-error *ngIf="PINFormControl.hasError('required')">
+                       PIN must be <strong>6 digits only</strong>
+                </mat-error>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="City" #City>
+                <input matInput placeholder="City" #City value="">
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="State" #State>
+                <input matInput placeholder="State" #State value="">
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="Address Proof Document" #AddressProof>
+                <input matInput placeholder="Address Proof Document" #AddressProof value="">
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <input matInput placeholder="Mobile Number" #MobileNo>
+                <input matInput placeholder="Mobile Number" #MobileNo [formControl]="MobileFormControl">
+                <mat-error *ngIf="MobileFormControl.hasError('required')">
+                       Mobile number is <strong>required</strong>
+                </mat-error>
             </mat-form-field>
         </p>
         <p>
@@ -79,13 +106,14 @@
         </p>
         <p>
             <span>Request OTP type:</span>
-            <mat-radio-group [(ngModel)]="OTPType" [ngModelOptions]="{standalone: true}">
+            <mat-radio-group [(ngModel)]="OTPType" [ngModelOptions]="{standalone: true}">   
                 <mat-radio-button *ngFor="let type of OTPRequestTypes" [value]="type">
                     {{type}}
                 </mat-radio-button>
             </mat-radio-group>
         </p>
-            <button mat-raised-button color="accent" type="button" (click)="VerifyDetails(Fname,Mname,Lname,PANCardNo,AadharNo,PassportNo,LineAddress1,LineAddress2,LineAddress3,Pin,City,State,AddressProof,MobileNo,LandlineNo,OTPType)">Verify</button>
+            <button mat-raised-button color="accent" type="button" [disabled]="!(PANCardFormControl.valid&&AadhaarFormControl.valid&&PINFormControl.valid&&LNameFControl.valid&&FNameFControl.valid&&AddrFControl.valid)"
+             (click)="VerifyDetails(Fname,Mname,Lname,PANCardNo,AadharNo,PassportNo,LineAddress1,LineAddress2,LineAddress3,Pin,City,State,AddressProof,MobileNo,LandlineNo,OTPType)">Verify</button>
     </form>
     <p *ngIf="PANDetailsVerificationText">
         Verifying PAN Card Details...
