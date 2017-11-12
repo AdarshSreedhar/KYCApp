@@ -5,7 +5,7 @@
             <mat-form-field>
                     <input matInput placeholder="customerId" #custID [formControl]="custIDFormControl"> 
                     <mat-error *ngIf="custIDFormControl.hasError('pattern')">
-                       Customer ID must be 9 digits
+                       Customer ID must be 6 digits
                     </mat-error>
                     <mat-error *ngIf="custIDFormControl.hasError('required')">
                        Customer ID is <strong>required</strong>
@@ -22,6 +22,7 @@
         </p>
         <div>
             <button mat-raised-button color="primary" (click)="VerifyCust(custID,pwd,$event)" [disabled]="!(custIDFormControl.valid&&passwordFormControl.valid)">Verify</button>
+            
             <div *ngIf="progressSpinner" style="text-align:center">
             <span style="text-align:center">
                 <p>Verifying...</p>

@@ -9,7 +9,7 @@ export class FormService
 {
     constructor(private http:Http){}
     dataStore={};
-    private UrlStep1="http://checkStep1Verification";
+    private UrlStep1="https://35.193.71.99:3000/validate";
     private UrlStep2="http://checkStep2Verification";
     private UrlStep3="http://checkStep2Verification";
     otp:number;

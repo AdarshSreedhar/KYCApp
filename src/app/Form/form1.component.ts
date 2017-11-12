@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormService } from "./form.service";
 import {Observable} from 'rxjs/Rx';
 import {FormControl,Validators,FormBuilder,FormGroup} from '@angular/forms';
-const CUSTID_REGEX ="^([1-9][0-9]*)$";
+const CUSTID_REGEX ="[0-9]{6}";
 @Component({
     selector:'forms',
     templateUrl:'form1.component.html',
@@ -45,7 +45,7 @@ export class FormComponent1
 
  VerifyCust(customerID:string,password:string,$event)
  {
-     let bodyObj={customerID:customerID,password:password};
+     let bodyObj={"cust_id":customerID,"password":password};
      this.progressSpinner=true;
     this.formService.ValidateStep1(bodyObj)
     .subscribe

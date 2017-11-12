@@ -25,7 +25,7 @@ export class FormComponent2
   AadhaarFormControl=new FormControl('',[Validators.required,Validators.pattern(AADHAAR_REGEX)]);
   PINFormControl=new FormControl('',[Validators.required,Validators.pattern(PIN_REGEX)]);
   AddrFControl=new FormControl('',[Validators.required]);
-  FnameFControl=new FormControl('',[Validators.required]);
+  FNameFControl=new FormControl('',[Validators.required]);
   LNameFControl=new FormControl('',[Validators.required]);
   MobileFormControl=new FormControl('',[Validators.required,Validators.pattern(PHONE_REGEX)]);
 ngOnInit()
